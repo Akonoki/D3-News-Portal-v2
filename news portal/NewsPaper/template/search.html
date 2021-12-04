@@ -1,0 +1,30 @@
+
+{% extends 'default.html' %}
+{% load custom_filters %}
+
+{% block title %}
+title
+{% endblock title %}
+{% block content %}
+    <h1>Поиск новостей:</h1>
+    <hr>
+    <meta charset="UTF-8">
+<form method="get">
+    {{ filter.form.as_p }} <!-- Форму от фильтров за нас сделает django. А вот кнопку, увы придётся делать самому -->
+    <input type="submit" value="Найти"/>
+</form>
+    {% for obj in filter.qs %}
+        {{ obj.title }}
+    {% endfor %}
+
+<hr>
+    <meta charset="UTF-8">
+<form method="get">
+    {{ author_filter.form.as_p }} <!-- Форму от фильтров за нас сделает django. А вот кнопку, увы придётся делать самому -->
+    <input type="submit" value="Найти"/>
+</form>
+    {% for obj in filter.qs %}
+        {{ obj.username }}
+    {% endfor %}
+
+{% endblock %}
